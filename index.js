@@ -1,4 +1,4 @@
-import defer from '../esm-defer/index.js';
+import defer from './esm-defer/index.js';
 
 window.addEventListener('load', () => {
   const fileInput = document.querySelector('input[type="file"]');
