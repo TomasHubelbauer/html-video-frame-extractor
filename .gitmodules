@@ -1,3 +1,6 @@
 [submodule "esm-defer"]
 	path = esm-defer
 	url = https://github.com/tomashubelbauer/esm-defer
+[submodule "esm-uzip-js"]
+	path = esm-uzip-js
+	url = https://github.com/tomashubelbauer/esm-uzip-js
