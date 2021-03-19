@@ -4,11 +4,28 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>HTML video frame extractor</title>
+    <script src="index.js" type="module"></script>
+    <link rel="stylesheet" href="index.css" />
     <!-- Define the icon so that it resolves correctly even on non-root URLs -->
     <link rel="icon" href="icon.png" />
   </head>
   <body>
-    <a href="seeking">Seeking mode</a>
-    <a href="playing">Playing mode</a>
+    <input type="file" />
+    <video></video>
+    <canvas></canvas>
+    <div id="dimensionDiv"></div>
+    <div id="durationDiv"></div>
+    <div id="rateDiv">
+      Frame rate:
+      <input type="number" value="24" />
+    </div>
+    <div id="frameDiv"></div>
+    <input type="range" disabled />
+    <button disabled>Download all frames one by one</button>
+    <p>
+      <strong>Important:</strong>
+      It is recommended to set your browser to allow downloading multiple files
+      at once without asking!
+    </p>
   </body>
 </html>

@@ -51,14 +51,7 @@ it shows the current, effective frame as seen by the code and not the browser.
 
 ### Fix blank video and canvas on iOS
 
-### Remove playback mode and archive download mode and clean up the UI
-
-The playback experiment was a failure, remove it and add a comment to the seek
-based solution mentioning it was tried and did not work.
-
-The archive download option was a failure, too. The archives grow too large and
-crash the tab upon attempting to download. It is not a usable feature. Remove it
-leaving only the download of individual files.
+### Provide a user friendly way of showing and testing bulk download
 
 Add some UI imagery and guidance on how to set up the browser to download
 individual files into a specific directory. Add a test batch download button for

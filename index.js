@@ -1,5 +1,4 @@
 import defer from '../esm-defer/index.js';
-import UZIP from '../esm-uzip-js/index.js';
 
 window.addEventListener('load', () => {
   const fileInput = document.querySelector('input[type="file"]');
@@ -29,9 +28,9 @@ window.addEventListener('load', () => {
 
   rateInput.addEventListener('change', () => {
     const frames = ~~(video.duration * rateInput.valueAsNumber);
-    frameInput.max = frames;
-    frameDiv.textContent = `Frame ${frameInput.value}/${frames}`;
-    button.textContent = `Download all ${frames} frames in an archive`;
+    frameInput.max = frames - 1;
+    frameDiv.textContent = `Frame ${frameInput.value + 1}/${frames}`;
+    button.textContent = `Download all ${frames} frames one by one`;
   });
 
   frameInput.addEventListener('input', () => {
@@ -68,32 +67,18 @@ window.addEventListener('load', () => {
     button.disabled = true;
     frameInput.disabled = '';
 
+    const a = document.createElement('a');
+    a.target = '_blank';
     const frames = ~~(video.duration * rateInput.valueAsNumber);
-    const payload = {};
     for (let index = 0; index < frames; index++) {
       seek = defer();
       frameInput.value = index;
       frameInput.dispatchEvent(new Event('input'));
       await seek.promise;
-      const blobDeferred = defer();
-      canvas.toBlob(blobDeferred.resolve);
-      const blob = await blobDeferred.promise;
-      const arrayBuffer = await blob.arrayBuffer();
-      payload[`${index}.png`] = new Uint8Array(arrayBuffer);
-    }
-
-    const arrayBuffer = UZIP.encode(payload);
-    const fileReader = new FileReader();
-    fileReader.readAsDataURL(new Blob([arrayBuffer], { type: 'application/zip' }));
-    fileReader.addEventListener('loadend', () => {
-      const a = document.createElement('a');
-      a.target = '_blank';
-
-      // TODO: Use the name from the video file
-      a.download = 'frames.zip';
-      a.href = fileReader.result;
+      a.download = `${index}.png`;
+      a.href = canvas.toDataURL();
       a.click();
-    });
+    }
   });
 
   if (fileInput.value) {
