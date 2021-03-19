@@ -33,3 +33,7 @@ that so putting all the screenshots into a single archive for download could be
 nicely doable. The compression might even not be completely bad since the frames
 should not change much from one to the other on videos this tool is intended
 for.
+
+### Set up mobile scaling metadata
+
+### Fix blank video and canvas on iOS
